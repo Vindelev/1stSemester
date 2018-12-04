@@ -38,15 +38,15 @@ Creators of foosball tables need an easy and reliable way to track the scores of
 
 ## Activity Diagram
 
-![Activity Diagram](CAO_Project/Appendices/ActicityDiagram.png)<br>
+![Activity Diagram](CAO_Project_Final/Appendices/ActicityDiagram.png)<br>
 
 ## State-Machine Diagram
-![Statemachine Diagram](CAO_Project/Appendices/StatemachineDiagram.png)<br><br>
+![Statemachine Diagram](CAO_Project_Final/Appendices/StatemachineDiagram.png)<br><br>
 
 # Design
 
 ## Breadboard Schematic
-![Breadboard Schematic](CAO_Project/Appendices/BreadboardSchematic.png)<br><br>
+![Breadboard Schematic](CAO_Project_Final/Appendices/BreadboardSchematic.png)<br><br>
 
 # Implementation
 

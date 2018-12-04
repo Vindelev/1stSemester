@@ -170,8 +170,8 @@ Test case where the first display starts with the value of “2”, and the seco
 ## Test Case 7
 Test case where the first display starts with the value of “0”, and the second display starts with the value of “2”. The red button, which controls the first display is pressed ten times, and after that, the blue button, which controls the second display is pressed twelve times. <br><br>
 **Expected result:** <br>
-The 1st display shows the value of “9” <br>
-The 2nd display shows the value of “9” <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The 1st display shows the value of “9” <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The 2nd display shows the value of “9” <br>
 **Model result:** <br>
-The 1st display shows the value of “9” <br>
-The 2nd display shows the value of “9” <br><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The 1st display shows the value of “9” <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The 2nd display shows the value of “9” <br><br>

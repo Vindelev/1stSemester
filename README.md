@@ -37,10 +37,11 @@ Creators of foosball tables need an easy and reliable way to track the scores of
 # Analysis
 
 ## Activity Diagram
-
+In the activity diagram you can see a "Cleared Displays" part, which the system only enters on startup or when the reset button is hit. This is a very important part of the system since it is different from the "Updated displays" part, which is basically just an incremented value of the last value displayed. <br>
 ![Activity Diagram](CAO_Project_Final/Appendices/ActicityDiagram.png)<br>
 
 ## State-Machine Diagram
+The State Machine diagram shows that the system is always in the "OnState". Whenever the reset button is hit the system re-enters this state, which automatically puts it in the "ClearedDisplayState". This state means the both displays has been set to the value of "0". When in this state you increment any of the displays, which puts the system in the "UpdatedDisplayState". This means that both displays no longer has the value of "0". <br>
 ![Statemachine Diagram](CAO_Project_Final/Appendices/StatemachineDiagram.png)<br><br>
 
 # Design

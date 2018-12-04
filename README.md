@@ -46,7 +46,8 @@ Creators of foosball tables need an easy and reliable way to track the scores of
 # Design
 
 ## Breadboard Schematic
-![Project Schematic](CAO_Project_Final/Appendices/CAO_Project_schematic.png)<br><br>
+![ProjectSchematic](CAO_Project_Final/Appendices/CAO_Project_schematic.PNG)<br>
+<br>
 
 ## Connecting the Wires
 Boardpins | Displaypins
@@ -71,10 +72,41 @@ PC3 | c
 PC5 | d
 PC7 | dp
 PB2 | Input for button
+<br>
 
+![Diplay Schematic](CAO_Project_Final/Appendices/DisplaySchematic.png)<br>
 
+![Arduino Schematic](CAO_Project_Final/Appendices/ArduinoSchematic.png)<br>
+<br>
 
 # Implementation
+## Startup
+When the system executes it begins from the method start. The start method sets port B as an input. This is done by loading the hex 0x00 value into DDRC register. The PORTC value is also set to 0x00 so each of the bits are fixed and known from the beginning. <br><br>
+The method start also sets two general purpose registers to 0x00. These registers will be used as counters later in the program to keep track of the amount of button presses. <br><br>
+The last instruction in the method jumps to the method “picks_a_number_a_out”. This is done to set both displays to 0 from the beginning. <br>
+
+## Methods for Input
+The method “read_button” looks for a button press. This is done by setting the a general purpose registers to be the value of the input. The method will loop until a button with the input to PORTB will be activated. Then the input will be one and branch the BREQ statement and make it able to proceed to the next method. <br><br>
+The next method “debounce_read” has the functionality of making sure that the button is only pressed once. This is done by creating a delay and then check if the value of the button press is still active, othervise it will loop back to the read “read_button” method. The delay is created with at method that executes a lot of cycles. The delay is calculated to take abound 20ms to execute. If both of the methods above are branched it will take the program to the next method. <br><br>
+the next method is called “incrementer” the purpose of the method is to detect which button has been pressed and increment the counter. This is performed by the method SBRC – Skip if Bit in Register is Cleared. This make the system ignore the next instruction if the bit is cleared. When the button is pressed the bit for the specific port will be set from 0 to one.  This skips the counter from increasing for the buttons that have not been pressed, this is because the bits are set to clear as default. <br><br>
+The same happens when the reset button is pressed. If the bit is set it will execute the reset method. the reset method sets both counters to 0x00 and executes from the “picks_a_number_a_out” method. which will set both displays to 0. <br>
+
+## Methods for Output
+The “picks_a_number_a_out” set the value of a new address in the general purpose registers to 0x00 and afterwards add the value of the first counter to the register. This is done the create a copy of the number of increments to prevent it from being decremented.
+The next part of the method will count the amount of button presses to match it with the method that will show the number. This is done by using the method BREQ instruction. It will branch if the value of the zero flag is the value of the register is one or more.
+The method counts the amount of button press by decrementing the register. The register will branch every time the counter is not zero. When the counter reach zero it will jump to one of the number_a methods. If the counter decreases more than 8 times it will automatically jump to the “number9_a” method. This is done to prevent it from going out of bounce. <br><br>
+The number_a methods are used to show the number on the display. This is done by setting the DDRA to 1 and the PORTA is set with individual bits for each of the 8 ports. They are set with a binary number because it is easier to make changes. When a bit is 1 it will light up. If a bit is 0 it will be off. Each method is fixed for each number.  The last part of each method jumps “picks_a_number_c_out”. <br><br>
+“picks_a_number_c_out” and the number_c methods has the same logic as the number_a equivalent. The only difference is that they are changing display 2 at the c ports. An other difference is that each of the number methods takes you to a END method instead. The END method takes you back to the button pressor method.<br><br>
+Both of the displays will update every time a change has been made to one of the counters. <br>
+
+## Delay
+The delay method creates a delay of 100ms. The delay is created by wasting machine cycles. Each instruction takes a specific amount of machine cycles to execute. All the instructions in our loop takes up 1 cycle except BREN which tacks up 2.
+The speed of how fast a machine cycle is executed depends on the frequency of the processor. A 1Mhz processor takes 1μs to execute one machine cycle. That means the mega 2560 processor which is running at 16Mhz is 16 times faster, which is equivalent to 1/16Mhz which is 62.5ns. <br><br>
+The delay is 100ms which is equal to 100,000,000ns. That means that 100,000,000/62.5ns machine cycles which is calculated 1,600,000. 
+The highest number that can be stored in an 8bit register is 255 so it is necessary to use an equation for doing the amount of cycles.
+The method to achieve these cycles is none by this equation 
+Delay = 250*200*4*8 = 1,600,000*62.5ns = 100,000,000ns = 100ms <br>
+<br>
 
 
 # Testing

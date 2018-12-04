@@ -46,7 +46,33 @@ Creators of foosball tables need an easy and reliable way to track the scores of
 # Design
 
 ## Breadboard Schematic
-![Breadboard Schematic](CAO_Project_Final/Appendices/BreadboardSchematic.png)<br><br>
+![Project Schematic](CAO_Project_Final/Appendices/CAO_Project_schematic.png)<br><br>
+
+## Connecting the Wires
+Boardpins | Displaypins
+----------|------------
+**FIRST PLAYER**
+PA0 | g
+PA2 | f 
+PA4 | a
+PA6 | b
+PA1 | e
+PA3 | c
+PA5 | d
+PA7 | dp
+PB0 | Input for the button
+**SECOND PLAYER**
+PC0 | g
+PC2 | f
+PC4 | a
+PC6 | b
+PC1 | e
+PC3 | c
+PC5 | d
+PC7 | dp
+PB2 | Input for button
+
+
 
 # Implementation
 
